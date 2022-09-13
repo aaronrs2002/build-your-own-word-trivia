@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="https://web-presence.biz/img/favicon.ico" />
+    <meta name="keywords" content="Free, WORD GAME, play, cards, wordgame" />
+    <meta name="description" content="Free word game. Play word game for free. No login. No app to install." />
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/brands.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/solid.css" rel="stylesheet" />
+    <!-- Bootstrap CSS-->
+    <link href="https://bootswatch.com/5/united/bootstrap.css" rel="stylesheet" id="themedStyle">
+
+    <link rel="stylesheet" href="https://raw.githubusercontent.com/aaronrs2002/black-jack/main/css/animate.min.css" />
+    <link href="https://aaronrs2002.github.io/black-jack/css/shared.css" rel="stylesheet" />
+
+    <link href="css/style.css" rel="stylesheet" />
+    <title>Word Game</title>
+    <!-- Global site tag (gtag.js) - Google Analytics 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JJWFFXF8G0"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-JJWFFXF8G0');
+    </script>-->
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+
+
+            <div class="col-md-12">
+
+
+                <div class="alert alert-info" role="alert">
+                    <div class="row">
+                        <div class="col-6">
+                            <h3>Balance: $<span id="playerMoney"></span> </h3>
+                        </div>
+                        <div class="col-6">
+                            <h3 id="requestedList">Guess the word</h3>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="card">
+                    <div class="card-body">
+                        <ul id="listTarget" class="list-group list-group-flush"></ul>
+                    </div>
+
+                </div>
+                <div class="alert hide" id="winLoseStatus" role="alert"></div>
+
+            </div>
+        </div>
+        <div class="col-md-12">
+
+            <i onClick="javascript:toggleEdit()" class="fas fa-pen-square pointer" data-sound="false"></i>
+        </div>
+
+        <div class="btn-group hide" role="group" id="dictionaryOptions">
+            <button type="button" class="btn btn-primary" data-word="3"
+                onClick="javascript:chooseDictionary(3)">Custom</button>
+            <button type="button" class="btn btn-primary active" data-word="2"
+                onClick="javascript:chooseDictionary(2)">Easier</button>
+            <button type="button" class="btn btn-primary" data-word="1"
+                onClick="javascript:chooseDictionary(1)">Harder</button>
+
+        </div>
+        <div class="col-md-12 hide" id="buildingCustom">
+
+            <div class="btn-group block" role="group">
+                <button type="button" class="btn btn-info active" data-edit="add"
+                    onClick="javascript:updateCRUD('add')">Add</button>
+                <button type="button" class="btn btn-info " data-edit="edit"
+                    onClick="javascript:updateCRUD('edit')">Edit</button>
+                <button type="button" class="btn btn-info" data-edit="delete"
+                    onClick="javascript:updateCRUD('delete')">Delete</button>
+
+            </div>
+
+
+            <ul class="list-unstyled">
+                <li>
+                    <select class="form-control hide" id="localList" onChange="javascript:selectWord()">
+                        <option>Select Word</option>;
+                    </select>
+                </li>
+                <li><input type="text" placeholder="Add Word" name="updateWord" class="form-control" /></li>
+                <li><input type="text" placeholder="Add Definition" name="updateDefinition" class="form-control" /></li>
+                <li>
+                    <div class="d-grid gap-2"><button class="btn btn-primary capitalize" id="updateBt"
+                            onClick="javascript:updateCustom()">Add</button></div>
+                </li>
+            </ul>
+            <div class="btn-group block" role="group">
+                <button class="btn bt-info" onClick="javascript:downloadData();"><i class="fas fa-file-download"></i>
+                    Download Words and definitions.</button>
+                <button class="btn bt-info" type="file" onClick="javascript:uploadData(e);"><i
+                        class="fas fa-file-upload"></i>
+                    Upload wordFun file.</button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <footer class="footer mt-auto py-3 animated fadeInUp">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="btn-group block my-2" role="group" id="gameLinks"></div>
+                </div>
+                <div class="col-md-3 my-2"> <select class="form-control" onChange="changeTheme()" id="themes"></select>
+                </div>
+                <div class="col-md-4" id="socialList">
+                </div>
+                <div class="col-md-2 my-3" id="year"></div>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+<script src="https://aaronrs2002.github.io/black-jack/js/footer.js"></script>
+<!--<script id="wordsVar" src="data/dictionary2.js"></script>-->
+<script src="js/functionality.js"></script>
+
+</html>
