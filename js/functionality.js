@@ -24,7 +24,13 @@ function loadList(data) {
     document.getElementById("localList").innerHTML = "";
     let listCk = [];
     let tempCustomDictionary = data.split(",");
-    tempCustomDictionary = JSON.parse(tempCustomDictionary);
+    if (JSON.parse(tempCustomDictionary)) {
+        tempCustomDictionary = JSON.parse(tempCustomDictionary);
+    } else {
+        globalAlert("alert-danger", "That data looks strange. Are your sure that is one of ours?");
+        return false;
+    }
+
     words = tempCustomDictionary;
     for (let i = 0; i < tempCustomDictionary.length; i++) {
         if (listCk.indexOf(tempCustomDictionary[i]) === -1) {
