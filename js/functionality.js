@@ -157,6 +157,7 @@ function loadList(data) {
     let listCk = [];
     let tempCustomDictionary = data.split(",");
     tempCustomDictionary = JSON.parse(tempCustomDictionary);
+    words = tempCustomDictionary;
     for (let i = 0; i < tempCustomDictionary.length; i++) {
         if (listCk.indexOf(tempCustomDictionary[i]) === -1) {
             customListHTML = customListHTML + "<option value='" + i + "'>" + tempCustomDictionary[i].substring(2, tempCustomDictionary[i].indexOf(":") - 1).replaceAll("'", "") + "</option>";
@@ -164,6 +165,7 @@ function loadList(data) {
         }
     }
     document.getElementById("localList").innerHTML = customListHTML;
+
 
 }
 
