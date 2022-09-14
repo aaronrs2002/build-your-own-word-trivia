@@ -139,7 +139,14 @@
 
 </body>
 <script src="https://aaronrs2002.github.io/black-jack/js/footer.js"></script>
-<!--<script id="wordsVar" src="data/dictionary2.js"></script>-->
+<script>
+    let words = [{ "TEST": "Checking if something works." }, { "RUNNING": "Moving faster than jogging on your feet.[2] Something is actually working correctly." }];
+    if (localStorage.getItem("customDictionary")) {
+        words = JSON.parse(localStorage.getItem("customDictionary"));
+    }
+
+</script>
+<script src="https://aaronrs2002.github.io/word-game/js/functionality.js"></script>
 <script src="js/functionality.js"></script>
 
 </html>
