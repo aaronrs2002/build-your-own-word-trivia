@@ -94,13 +94,13 @@ function updateCustom() {
                 tempList.push(customDictionary[i]);
             }
         }
-        document.querySelector("input[name='updateWord']").value = ""
-        document.querySelector("input[name='updateDefinition']").value = "";
 
         customDictionary = tempList;
     }
     localStorage.setItem("customDictionary", JSON.stringify(customDictionary));
     loadList(JSON.stringify(customDictionary));
+    document.querySelector("input[name='updateWord']").value = ""
+    document.querySelector("input[name='updateDefinition']").value = "";
 }
 
 
@@ -152,7 +152,6 @@ function handleOnSubmit(event, type) {
                 console.log("That wasn't json.")
             }
         };
-
         fileReader.readAsText(file);
     }
     document.querySelector("input[type='file']").value = "";
