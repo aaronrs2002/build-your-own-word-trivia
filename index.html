@@ -14,7 +14,7 @@
     <!-- Bootstrap CSS-->
     <link href="https://bootswatch.com/5/united/bootstrap.css" rel="stylesheet" id="themedStyle">
 
-    <link rel="stylesheet" href="https://raw.githubusercontent.com/aaronrs2002/black-jack/main/css/animate.min.css" />
+    <link rel="stylesheet" href="https://aaronrs2002.github.io/black-jack/css/animate.min.css" />
     <link href="https://aaronrs2002.github.io/black-jack/css/shared.css" rel="stylesheet" />
 
     <link href="css/style.css" rel="stylesheet" />
@@ -110,9 +110,9 @@
 
                 <input type="file" name="importFile" class="btn btn-info" accept=".json"
                     onChange="javascript:handleOnChange(event)" />
-                <button id="fileUpload" class="btn bt-info hide" onClick="javascript:handleOnSubmit(event, 'json')"><i
-                        class="fas fa-file-upload"></i>
-                    Upload wordFun file.</button>
+                <button id="fileUpload" class="btn btn-danger hide"
+                    onClick="javascript:handleOnSubmit(event, 'json')"><i class="fas fa-file-upload"></i>
+                    Upload</button>
 
 
             </div>
@@ -120,7 +120,7 @@
         </div>
     </div>
 
-
+    <div class="hide alert fadeInUp" role="alert" id="globalAlert"></div>
     <footer class="footer mt-auto py-3 animated fadeInUp">
         <div class="container">
             <div class="row">
@@ -138,11 +138,17 @@
 
 
 </body>
+
 <script src="https://aaronrs2002.github.io/black-jack/js/footer.js"></script>
 <script>
     let words = [{ "TEST": "Checking if something works." }, { "RUNNING": "Moving faster than jogging on your feet.[2] Something is actually working correctly." }];
     if (localStorage.getItem("customDictionary")) {
-        words = JSON.parse(localStorage.getItem("customDictionary"));
+        if (JSON.parse(localStorage.getItem("customDictionary"))) {
+            words = JSON.parse(localStorage.getItem("customDictionary"));
+        } else {
+            document.getElementById("requestedList").innerHTML = "Clear out your your local storage. This data doesn't work.";
+        }
+
     }
 
 </script>

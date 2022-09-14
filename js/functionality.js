@@ -157,5 +157,6 @@ function handleOnSubmit(event, type) {
     }
     document.querySelector("input[type='file']").value = "";
     document.querySelector("#fileUpload").classList.add("hide");
+    globalAlert("alert-success", "Your file was uploaded. Check the select menu under 'Edit' to view your words!");
 };
 
