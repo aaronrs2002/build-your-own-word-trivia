@@ -171,6 +171,7 @@ function handleOnSubmit(event, type) {
     }
     document.querySelector("input[type='file']").value = "";
     document.querySelector("#fileUpload").classList.add("hide");
+    toggleEdit();
     globalAlert("alert-success", "Your file was uploaded. The next word should be one you uploaded.");
 };
 
