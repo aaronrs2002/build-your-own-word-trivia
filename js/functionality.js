@@ -24,12 +24,16 @@ function loadList(data) {
     document.getElementById("localList").innerHTML = "";
     let listCk = [];
     let tempCustomDictionary = data.split(",");
-    if (JSON.parse(tempCustomDictionary)) {
+
+
+    try {
         tempCustomDictionary = JSON.parse(tempCustomDictionary);
-    } else {
-        globalAlert("alert-danger", "That data looks strange. Are your sure that is one of ours?");
+    } catch (error) {
+        console.error(error);
+        globalAlert("alert-danger", "That data looks strange. Are your sure that is one of ours? Clear your local storage or cache.");
         return false;
     }
+
 
     words = tempCustomDictionary;
     for (let i = 0; i < tempCustomDictionary.length; i++) {
@@ -38,7 +42,12 @@ function loadList(data) {
             listCk.push(tempCustomDictionary[i]);
         }
     }
+
     document.getElementById("localList").innerHTML = customListHTML;
+    if (listCk.length === 0) {
+        globalAlert("alert-danger", "There are no words loaded. Are you sure your data is good?");
+        return false;
+    }
 
 
 }
@@ -162,6 +171,6 @@ function handleOnSubmit(event, type) {
     }
     document.querySelector("input[type='file']").value = "";
     document.querySelector("#fileUpload").classList.add("hide");
-    globalAlert("alert-success", "Your file was uploaded. Check the select menu under 'Edit' to view your words!");
+    globalAlert("alert-success", "Your file was uploaded. The next word should be one you uploaded.");
 };
 
