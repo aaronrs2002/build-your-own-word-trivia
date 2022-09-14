@@ -255,37 +255,36 @@ function downloadData() {
     document.body.removeChild(a);
 }
 
-function uploadData(e) {
-    console.log("Not up yet.");
-    //START FILE READER
-    /*
-    const fileReader = new FileReader();
-    const handleOnChange = (e) => {
-        setFile(e.target.files[0]);
-        if (e.target.files[0]) {
-            setImportDisable((importDisable) => false);
-        }
-    };
-    const handleOnSubmit = (e, type) => {
-        e.preventDefault();
-        localStorage.setItem("csvData", "");
-        if (file) {
-            fileReader.onload = function (event) {
-                const csvOutput = event.target.result;
-   
-                if (type === "csv") {
-                    buildObjects(csvOutput);
-                } else {
-                    let tempObj = JSON.stringify(JSON.parse(csvOutput));
-                    localStorage.setItem("csvData", tempObj);
-                    props.getData();
-                }
-   
-            };
-   
-            fileReader.readAsText(file);
-        }
-        document.querySelector("input[type='file']").value = "";
-        setImportDisable((importDisable) => true);
-    };*/
-}
+
+//START FILE READER
+const fileReader = new FileReader();
+let file;
+function handleOnChange(event) {
+    if (event.target.files[0]) {
+        file = event.target.files[0];
+        console.log("event.target.files[0]: " + event.target.files[0]);
+        document.querySelector("#fileUpload").classList.remove("hide");
+    } else {
+        document.querySelector("#fileUpload").classList.add("hide");
+    }
+};
+function handleOnSubmit(event, type) {
+    event.preventDefault();
+    localStorage.setItem("customDictionary", "");
+    if (file) {
+        fileReader.onload = function (event) {
+            const tempObj = event.target.result;
+            if (type === "json") {
+                localStorage.setItem("customDictionary", tempObj);
+                loadList(tempObj);
+            }
+            else {
+                console.log("That wasn't json.")
+            }
+        };
+
+        fileReader.readAsText(file);
+    }
+    document.querySelector("input[type='file']").value = "";
+    document.querySelector("#fileUpload").classList.add("hide");
+};

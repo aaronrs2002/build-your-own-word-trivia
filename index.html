@@ -63,7 +63,10 @@
         </div>
         <div class="col-md-12">
 
-            <i onClick="javascript:toggleEdit()" class="fas fa-pen-square pointer" data-sound="false"></i>
+            <button class="btn" onClick="javascript:toggleEdit()">
+                <i class="fas fa-pen-square pointer" data-sound="false"></i> Build your own
+                words ands hints.
+            </button>
         </div>
 
         <div class="btn-group hide" role="group" id="dictionaryOptions">
@@ -104,9 +107,14 @@
             <div class="btn-group block" role="group">
                 <button class="btn bt-info" onClick="javascript:downloadData();"><i class="fas fa-file-download"></i>
                     Download Words and definitions.</button>
-                <button class="btn bt-info" type="file" onClick="javascript:uploadData(e);"><i
+
+                <input type="file" name="importFile" class="btn btn-info" accept=".json"
+                    onChange="javascript:handleOnChange(event)" />
+                <button id="fileUpload" class="btn bt-info hide" onClick="javascript:handleOnSubmit(event, 'json')"><i
                         class="fas fa-file-upload"></i>
                     Upload wordFun file.</button>
+
+
             </div>
 
         </div>
