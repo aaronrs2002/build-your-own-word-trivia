@@ -1,1 +1,1 @@
-# local-word-game
+# build-your-own-word-trivia
