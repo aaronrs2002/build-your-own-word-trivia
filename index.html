@@ -111,25 +111,43 @@
                 </li>
             </ul>
 
-            <div class="d-grid gap-2 mx-auto">
-                <button class="btn btn-light" onClick="javascript:downloadData();"><i class="fas fa-file-download"></i>
-                    Download</button>
+            <div class="row">
 
-                <input type="file" name="importFile" class="btn btn-light" accept=".json"
-                    onChange="javascript:handleOnChange(event)" />
-
-
-                <button id="fileUpload" class="btn btn-danger hide"
-                    onClick="javascript:handleOnSubmit(event, 'json')"><i class="fas fa-file-upload"></i>
-                    Upload</button>
-
-
+                <div class="col-md-6">
+                    <div class="d-grid gap-2  py-2">
+                        <button class="btn btn-light" onClick="javascript:downloadData();"><i
+                                class="fas fa-file-download"></i>
+                            Download</button>
+                    </div>
+                </div>
+                <div class="col-md-6 py-2">
+                    <div class="d-grid gap-2">
+                        <input type="file" name="importFile" class="btn btn-light" accept=".json"
+                            onChange="javascript:handleOnChange(event)" />
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="d-grid gap-2  py-2">
+                        <button id="fileUpload" class="btn btn-danger hide"
+                            onClick="javascript:handleOnSubmit(event, 'json')"><i class="fas fa-file-upload"></i>
+                            Upload</button>
+                    </div>
+                </div>
             </div>
 
 
 
 
+
+
+
+
         </div>
+
+
+
+
+    </div>
     </div>
 
     <div class="hide alert fadeInUp" role="alert" id="globalAlert"></div>
