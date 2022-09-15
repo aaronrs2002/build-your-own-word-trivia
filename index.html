@@ -122,8 +122,15 @@
                 </div>
                 <div class="col-md-6 py-2">
                     <div class="d-grid gap-2">
-                        <input type="file" name="importFile" class="btn btn-light" accept=".json"
-                            onChange="javascript:handleOnChange(event)" />
+
+
+
+                        <label class="custom-file-upload btn btn-light">
+                            <input type="file" name="importFile" accept=".json"
+                                onChange="javascript:handleOnChange(event)" />
+                            <i class="fa fa-cloud-upload"></i> Select a "wordFun" file to upload
+                        </label>
+
                     </div>
                 </div>
                 <div class="col-md-12">
