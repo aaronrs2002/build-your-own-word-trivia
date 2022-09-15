@@ -11,6 +11,15 @@
     display: block;
 }
 
-[name="importFile"] {
-    max-width: 90%;
+/*START MOBILE CSS*/
+
+@media (max-width: 768px) {
+
+    [name="importFile"] {
+        max-width: 90%;
+
+    }
+
 }
+
+/*end 768*/
