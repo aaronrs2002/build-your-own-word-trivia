@@ -20,7 +20,6 @@ input[type="file"] {
 }
 
 .custom-file-upload {
-    border: 1px solid #ccc;
     display: inline-block;
     padding: 6px 12px;
     cursor: pointer;
@@ -30,11 +29,6 @@ input[type="file"] {
 
 @media (max-width: 768px) {
 
-    [name="importFile"] {
-        max-width: 90%;
 
-    }
-
-}
 
 /*end 768*/
