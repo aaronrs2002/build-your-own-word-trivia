@@ -65,6 +65,8 @@ function updateCRUD(update) {
 
     if (update === "add") {
         document.getElementById("localList").classList.add("hide");
+        document.querySelector("input[name='updateWord']").value = ""
+        document.querySelector("input[name='updateDefinition']").value = "";
     } else {
         document.getElementById("localList").classList.remove("hide");
     }
