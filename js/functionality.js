@@ -84,15 +84,20 @@ function updateCustom() {
     }
 
     if (update === "add") {
+        let tempWordList = [];
         document.getElementById("localList").classList.add("hide");
+
+
+        for (let i = 0; i < customDictionary.length; i++) {
+            tempWordList.push(customDictionary[i].substring(2, customDictionary[i].indexOf(":") - 1).replaceAll("'", ""));
+
+        }
+
 
         if (document.querySelector("input[name='updateWord']").value && document.querySelector("input[name='updateDefinition']").value) {
             let newWord = document.querySelector("input[name='updateWord']").value.toLowerCase();
-            customDictionary = [...customDictionary, "{ '" + newWord + "' : '" + document.querySelector("input[name='updateDefinition']").value + "'}"];
-
-            console.log("customDictionary.indexOf(newWord) : " + JSON.stringify(customDictionary))
-
-            if (customDictionary.indexOf(newWord) === -1) {
+            if (tempWordList.indexOf(newWord) === -1) {
+                customDictionary = [...customDictionary, "{ '" + newWord + "' : '" + document.querySelector("input[name='updateDefinition']").value + "'}"];
                 globalAlert("alert-success", newWord + " added.");
                 newWord = "";
                 document.querySelector("input[name='updateDefinition']").value = "";
