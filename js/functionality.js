@@ -83,24 +83,45 @@ function updateCustom() {
 
     if (update === "add") {
         document.getElementById("localList").classList.add("hide");
+
         if (document.querySelector("input[name='updateWord']").value && document.querySelector("input[name='updateDefinition']").value) {
-            customDictionary = [...customDictionary, "{ '" + document.querySelector("input[name='updateWord']").value + "' : '" + document.querySelector("input[name='updateDefinition']").value + "'}"];
-            document.querySelector("input[name='updateWord']").value = "";
-            document.querySelector("input[name='updateDefinition']").value = "";
+            let newWord = document.querySelector("input[name='updateWord']").value.toLowerCase();
+            customDictionary = [...customDictionary, "{ '" + newWord + "' : '" + document.querySelector("input[name='updateDefinition']").value + "'}"];
+
+            if (customDictionary.indexOf(newWord) === -1) {
+                globalAlert("alert-danger", "This list already contains " + newWord + ".");
+                return false;
+            } else {
+                globalAlert("alert-success", newWord + " added.");
+                newWord = "";
+                document.querySelector("input[name='updateDefinition']").value = "";
+            }
+
+
         } else {
             document.querySelector("input[name='updateWord']").classList.add("error");
             document.querySelector("input[name='updateDefinition']").classList.add("error");
-            console.log("invalid field");
+            globalAlert("alert-danger", "We are missing something.");
             return false;
         }
     }
 
     if (update === "edit") {
-        for (let i = 0; i < customDictionary.length; i++) {
-            if (i === Number(whichIndex)) {
-                customDictionary[i] = "{ '" + document.querySelector("input[name='updateWord']").value + "' : '" + document.querySelector("input[name='updateDefinition']").value + "'}";
+
+        if (document.querySelector("input[name='updateWord']").value && document.querySelector("input[name='updateDefinition']").value) {
+            let editWord = document.querySelector("input[name='updateWord']").value.toLowerCase();
+            for (let i = 0; i < customDictionary.length; i++) {
+                if (i === Number(whichIndex)) {
+                    customDictionary[i] = "{ '" + editWord + "' : '" + document.querySelector("input[name='updateDefinition']").value + "'}";
+                }
             }
+            globalAlert("alert-success", editWord + " edited.");
+        } else {
+            globalAlert("alert-danger", "We are missing something.");
+            return false;
         }
+
+
     }
     if (update === "delete") {
         let tempList = [];
@@ -111,11 +132,13 @@ function updateCustom() {
         }
 
         customDictionary = tempList;
+        globalAlert("alert-success", "Deleted.");
     }
     localStorage.setItem("customDictionary", JSON.stringify(customDictionary));
     loadList(JSON.stringify(customDictionary));
     document.querySelector("input[name='updateWord']").value = ""
     document.querySelector("input[name='updateDefinition']").value = "";
+
 }
 
 
