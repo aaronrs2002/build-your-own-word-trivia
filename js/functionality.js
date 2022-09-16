@@ -61,7 +61,7 @@ function updateCRUD(update) {
     [].forEach.call(document.querySelectorAll("[data-edit]"), function (e) {
         e.classList.remove("active");
     });
-    document.querySelector("[data-edit='" + update + "']").classList.remove("active");
+    document.querySelector("[data-edit='" + update + "']").classList.add("active");
 
     if (update === "add") {
         document.getElementById("localList").classList.add("hide");
