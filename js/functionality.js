@@ -90,7 +90,9 @@ function updateCustom() {
             let newWord = document.querySelector("input[name='updateWord']").value.toLowerCase();
             customDictionary = [...customDictionary, "{ '" + newWord + "' : '" + document.querySelector("input[name='updateDefinition']").value + "'}"];
 
-            if (customDictionary.indexOf(newWord) !== -1) {
+            console.log("customDictionary.indexOf(newWord) : " + JSON.stringify(customDictionary))
+
+            if (customDictionary.indexOf(newWord) === -1) {
                 globalAlert("alert-success", newWord + " added.");
                 newWord = "";
                 document.querySelector("input[name='updateDefinition']").value = "";
@@ -112,6 +114,7 @@ function updateCustom() {
 
         if (document.querySelector("input[name='updateWord']").value && document.querySelector("input[name='updateDefinition']").value) {
             let editWord = document.querySelector("input[name='updateWord']").value.toLowerCase();
+
             for (let i = 0; i < customDictionary.length; i++) {
                 if (i === Number(whichIndex)) {
                     customDictionary[i] = "{ '" + editWord + "' : '" + document.querySelector("input[name='updateDefinition']").value + "'}";
@@ -119,6 +122,8 @@ function updateCustom() {
             }
             globalAlert("alert-success", editWord + " edited.");
         } else {
+            document.querySelector("input[name='updateWord']").classList.add("error");
+            document.querySelector("input[name='updateDefinition']").classList.add("error");
             globalAlert("alert-danger", "We are missing something.");
             return false;
         }
