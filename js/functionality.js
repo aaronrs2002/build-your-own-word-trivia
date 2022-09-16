@@ -88,7 +88,7 @@ function updateCustom() {
             let newWord = document.querySelector("input[name='updateWord']").value.toLowerCase();
             customDictionary = [...customDictionary, "{ '" + newWord + "' : '" + document.querySelector("input[name='updateDefinition']").value + "'}"];
 
-            if (customDictionary.indexOf(newWord) === -1) {
+            if (customDictionary.indexOf(newWord) !== -1) {
                 globalAlert("alert-danger", "This list already contains " + newWord + ".");
                 return false;
             } else {
