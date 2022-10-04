@@ -184,6 +184,7 @@ function handleOnChange(event) {
         file = event.target.files[0];
         console.log("event.target.files[0]: " + event.target.files[0]);
         document.querySelector("#fileUpload").classList.remove("hide");
+        globalAlert("alert-danger", `File selected. Now, Click the RED <i class="fas fa-file-upload"></i> "Upload" button.`);
     } else {
         document.querySelector("#fileUpload").classList.add("hide");
     }
