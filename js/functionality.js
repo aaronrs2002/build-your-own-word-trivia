@@ -95,7 +95,7 @@ function updateCustom() {
 
 
         if (document.querySelector("input[name='updateWord']").value && document.querySelector("input[name='updateDefinition']").value) {
-            let newWord = document.querySelector("input[name='updateWord']").value.toLowerCase();
+            let newWord = document.querySelector("input[name='updateWord']").value.toLowerCase().trimEnd().trimStart();
             if (tempWordList.indexOf(newWord) === -1) {
                 customDictionary = [...customDictionary, "{ '" + newWord + "' : '" + document.querySelector("input[name='updateDefinition']").value + "'}"];
                 globalAlert("alert-success", newWord + " added.");
