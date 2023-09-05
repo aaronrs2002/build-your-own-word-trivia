@@ -6,15 +6,19 @@ let customDictionary = [];
 let CRUD = "add";
 let editModule = false;
 
-function toggleEdit() {
-    if (editModule === true) {
+function toggleEdit(hideShow) {
+    if (hideShow === "hide") {
         editModule = false;
         document.getElementById("buildingCustom").classList.add("hide");
-        document.querySelector("i[data-sound]").dataset.sound = false;
+        // document.querySelector("i[data-sound]").dataset.sound = false;
+        document.querySelector("button[data-editpanel='hide']").classList.add("hide");
+        document.querySelector("button[data-editpanel='show']").classList.remove("hide");
     } else {
         editModule = true;
+        document.querySelector("button[data-editpanel='hide']").classList.remove("hide");
+        document.querySelector("button[data-editpanel='show']").classList.add("hide");
         document.getElementById("buildingCustom").classList.remove("hide");
-        document.querySelector("i[data-sound]").dataset.sound = true;
+        // document.querySelector("i[data-sound]").dataset.sound = true;
     }
 
 }

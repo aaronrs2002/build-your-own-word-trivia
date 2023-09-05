@@ -82,7 +82,13 @@
                 onClick="javascript:chooseDictionary(1)">Harder</button>
 
         </div>
-        <div class="col-md-12 hide" id="buildingCustom">
+        <div class="col-md-12">
+
+            <button class="btn btn-secondary w-100" data-editpanel="hide" onClick="javascript:toggleEdit('hide')">
+                <i class="fas fa-pen pointer"></i>Toggle Editing Panel
+            </button>
+        </div>
+        <div class="col-md-12 " id="buildingCustom">
 
             <div class="btn-group block" role="group">
                 <button type="button" class="btn btn-info active" data-edit="add"
@@ -159,8 +165,9 @@
         <div class="row">
             <div class="col-md-12">
 
-                <button class="btn btn-secondary w-100" onClick="javascript:toggleEdit()">
-                    <i class="fas fa-pen pointer"></i> Build your own
+                <button class="btn btn-secondary w-100 hide" data-editpanel="show"
+                    onClick="javascript:toggleEdit('show')">
+                    <i class="fas fa-pen pointer"></i> <span></span>Build your own
                     words and hints.
                 </button>
             </div>
