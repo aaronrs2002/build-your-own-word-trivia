@@ -61,7 +61,7 @@ if (localStorage.getItem("customDictionary")) {
 }
 
 function updateCRUD(update) {
-    document.getElementById("updateBt").innerHTML = update;
+    document.getElementById("updateBt").innerHTML = "Submit: " + update + " item.";
     [].forEach.call(document.querySelectorAll("[data-edit]"), function (e) {
         e.classList.remove("active");
     });
