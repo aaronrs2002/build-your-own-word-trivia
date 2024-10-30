@@ -23,24 +23,52 @@ function toggleEdit(hideShow) {
 
 }
 
-function loadList(data) {
+function loadList() {
+    let data = []
+    try {
+        let prepData = JSON.parse(localStorage.getItem("customDictionary"));
+        for (let i = 0; i < prepData.length; i++) {
+            if (prepData[i]) {
+                data.push(prepData[i]);
+            }
+        }
+    } catch (error) {
+        globalAlert("alert-warning", "This data does not look right.")
+    }
+    console.log("JSON.stringify(data): " + JSON.stringify(data))
     let customListHTML = "<option>Select Word</option>";
     document.getElementById("localList").innerHTML = "";
     let listCk = [];
-    let tempCustomDictionary = data.split(",");
+    if ((typeof data) === "string") {
+        try {
+            data = data.split(",");
+        } catch (error) {
+            console.log("No split error: " + error);
+        }
 
+    }
+    let tempCustomDictionary = [];
+    for (let i = 0; i < data.length; i++) {
+        if (data[i] !== ",") {
+            tempCustomDictionary.push(data[i])
+        }
+    }
+    console.log("(typeof data): " + (typeof data) + " - JSON.stringify(tempCustomDictionary) : " + JSON.stringify(tempCustomDictionary))
 
     try {
-        tempCustomDictionary = JSON.parse(tempCustomDictionary);
+        if ((typeof tempCustomDictionary) !== "string") {
+            console.log("(typeof data): " + (typeof data))
+        };
     } catch (error) {
         console.error(error);
-        globalAlert("alert-danger", "That data looks strange. Are your sure that is one of ours? Clear your local storage or cache.");
+        globalAlert("alert-info", error + " - That data looks strange. Are your sure that is one of ours? Clear your local storage or cache.");
         return false;
     }
 
 
     words = tempCustomDictionary;
     for (let i = 0; i < tempCustomDictionary.length; i++) {
+        console.log("tempCustomDictionary[i]: " + tempCustomDictionary[i])
         if (listCk.indexOf(tempCustomDictionary[i]) === -1) {
             customListHTML = customListHTML + "<option value='" + i + "'>" + tempCustomDictionary[i].substring(2, tempCustomDictionary[i].indexOf(":") - 1).replaceAll("'", "") + "</option>";
             listCk.push(tempCustomDictionary[i]);
@@ -151,7 +179,7 @@ function updateCustom() {
         globalAlert("alert-success", "Deleted.");
     }
     localStorage.setItem("customDictionary", JSON.stringify(customDictionary));
-    loadList(JSON.stringify(customDictionary));
+    loadList();
     document.querySelector("input[name='updateWord']").value = ""
     document.querySelector("input[name='updateDefinition']").value = "";
 
@@ -186,22 +214,40 @@ let file;
 function handleOnChange(event) {
     if (event.target.files[0]) {
         file = event.target.files[0];
-        console.log("event.target.files[0]: " + event.target.files[0]);
+        console.log("event.target.files[0]: " + JSON.stringify(event.target.files[0]));
         document.querySelector("#fileUpload").classList.remove("hide");
-        globalAlert("alert-warning", `File selected. Now, Click the RED <i class="fas fa-file-upload"></i> "Upload" button.`);
+        document.querySelector("#fileMerge").classList.remove("hide");
+        globalAlert("alert-warning", `File selected. Select if you want to merge  with current data or not.`);
     } else {
         document.querySelector("#fileUpload").classList.add("hide");
+        document.querySelector("#fileMerge").classList.add("hide");
     }
 };
-function handleOnSubmit(event, type) {
+function handleOnSubmit(event, type, merge) {
     event.preventDefault();
-    localStorage.setItem("customDictionary", "");
+
     if (file) {
         fileReader.onload = function (event) {
             const tempObj = event.target.result;
             if (type === "json") {
-                localStorage.setItem("customDictionary", tempObj);
-                loadList(tempObj);
+
+
+
+                if (merge === "default") {
+                    // localStorage.setItem("customDictionary", tempObj);    
+                    localStorage.setItem("customDictionary", tempObj);
+                    loadList();
+
+                } else {
+                    let tempTasks = [...JSON.parse(localStorage.getItem("customDictionary")), ...JSON.parse(tempObj)];
+
+
+                    localStorage.setItem("customDictionary", JSON.stringify(tempTasks));
+
+                    loadList();
+
+
+                }
             }
             else {
                 console.log("That wasn't json.")
@@ -211,6 +257,7 @@ function handleOnSubmit(event, type) {
     }
     document.querySelector("input[type='file']").value = "";
     document.querySelector("#fileUpload").classList.add("hide");
+    document.querySelector("#fileMerge").classList.add("hide");
     toggleEdit();
     globalAlert("alert-success", "Your file was uploaded. The next word should be one you uploaded.");
 };
