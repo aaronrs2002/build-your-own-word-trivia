@@ -259,6 +259,7 @@ function handleOnSubmit(event, type, merge) {
     document.querySelector("#fileUpload").classList.add("hide");
     document.querySelector("#fileMerge").classList.add("hide");
     toggleEdit();
+
     globalAlert("alert-success", "Your file was uploaded. The next word should be one you uploaded.");
 };
 
