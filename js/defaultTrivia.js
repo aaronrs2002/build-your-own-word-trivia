@@ -50,7 +50,6 @@ let words = [
     { "The Soup Nazi": "What is the name of the person who runs the soup kitchen?" },
     { "Beehive": "What type of hairstyle does Jerry's mom have?" },
     { "The Yankees": "What job does George get fired from for sleeping with the cleaning lady?" },
-
     { "Friends": "What popular TV show featured six friends living in New York City?" },
     { "The Fresh Prince of Bel-Air": "What TV show starred Will Smith as a teenager sent to live with his wealthy relatives?" },
     { "Titanic": "What 1997 film became one of the highest-grossing movies of all time and featured the song 'My Heart Will Go On'?" },
